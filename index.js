@@ -1,3 +1,44 @@
+// // Bài tập quản lý sinh viên
+document.querySelector(".btn-primary").onclick = function () {
+  // hành động
+  var diemChuan = document.getElementById("diemChuan").value * 1;
+  var khuVuc = document.getElementById("khuVuc").value * 1;
+  var doiTuong = document.getElementById("doiTuong").value * 1;
+  var diemMonThuNhat = document.getElementById("diemMonThuNhat").value * 1;
+  var diemMonThuHai = document.getElementById("diemMonThuHai").value * 1;
+  var diemMonThuBa = document.getElementById("diemMonThuBa").value * 1;
+
+  var ketQuaDiem = "";
+  console.log(ketQuaDiem);
+
+  var tongDiem = 0;
+  tongDiem = khuVuc + doiTuong + diemMonThuNhat + diemMonThuHai + diemMonThuBa;
+
+  var ketQuaTrungTuyen = "";
+  if (
+    tongDiem >= diemChuan &&
+    diemMonThuNhat > 0 &&
+    diemMonThuHai > 0 &&
+    diemMonThuBa > 0
+  ) {
+    ketQuaTrungTuyen = "Đỗ !Chức mừng bạn đã đỗ đại học";
+  } else if (
+    tongDiem < diemChuan ||
+    diemMonThuNhat == 0 ||
+    diemMonThuHai == 0 ||
+    diemMonThuBa == 0
+  ) {
+    ketQuaTrungTuyen = "Rớt ! Chúc bạn may mắn lần sau";
+  }
+  ketQuaDiem =
+    "Bạn đã " +
+    ketQuaTrungTuyen +
+    " - Với tổng điểm là: " +
+    tongDiem +
+    " điểm.";
+  document.getElementById("inDiem").innerHTML = ketQuaDiem;
+};
+
 // Bài tập tính tiền điện
 document.querySelector(".btn-dark").onclick = function () {
   // hành động
@@ -82,35 +123,27 @@ document.querySelector(".btn-success").onclick = function () {
   )}`;
 };
 
-// **
+// Bài tập tính tiền cáp
+document.getElementById("btnTinhTienCap").onclick = function () {
+  // input họ tên, số điện người dùng nhập
+  var mySelect = document.getElementById("mySelect").value;
+  var maKH = document.getElementById("maKH").value;
+  var soKenh = document.getElementById("soKenh").value;
+  var soKetNoi = document.getElementById("soKetNoi").value;
+  var ketQuaTienCap = "";
 
-document.getElementById("tinhThue").onclick = function () {
-  var sothuNhap = document.getElementById("thuNhap").value * 1;
-  var soNguoi = document.getElementById("soNguoi").value * 1;
-  var thuNhapChiuThue = sothuNhap - 4000000 - soNguoi * 1600000;
-  var xuatThue = 0;
-  if (thuNhapChiuThue < 60000000) {
-    alert("người dùng chưa cần đóng thuế vì quá nghèo");
+  // progress
+  var tienCap = 0;
+  if (mySelect == "user") {
+    tienCap = 4.5 + 20.5 + 7.5 * soKenh;
+  } else if (mySelect == "company" && soKetNoi <= 10) {
+    tienCap = 15 + 75 + 50 * soKenh;
+  } else if (mySelect == "company" && soKetNoi > 10) {
+    tienCap = 15 + 75 + (soKetNoi - 10) * 5 + 50 * soKenh;
   }
-  if (thuNhapChiuThue == 60000000) {
-    xuatThue = thuNhapChiuThue * 0.05;
-  } else if (thuNhapChiuThue > 60000000 && thuNhapChiuThue <= 120000000) {
-    xuatThue = thuNhapChiuThue * 0.1;
-  } else if (thuNhapChiuThue > 120000000 && thuNhapChiuThue <= 210000000) {
-    xuatThue = thuNhapChiuThue * 0.15;
-  } else if (thuNhapChiuThue > 210000000 && thuNhapChiuThue <= 384000000) {
-    xuatThue = thuNhapChiuThue * 0.2;
-  } else if (thuNhapChiuThue > 384000000 && thuNhapChiuThue <= 624000000) {
-    xuatThue = thuNhapChiuThue * 0.25;
-  } else if (thuNhapChiuThue > 624000000 && thuNhapChiuThue <= 960000000) {
-    xuatThue = thuNhapChiuThue * 0.3;
-  } else {
-    xuatThue = thuNhapChiuThue * 0.35;
-  }
-  document.getElementById(
-    "tienThue"
-  ).innerHTML = `Số thuế bạn cần đóng là: ${xuatThue.toLocaleString("it-IT", {
-    style: "currency",
-    currency: "VND",
-  })}`;
+  console.log(tienCap);
+  // In kết quả ra màn hình
+  ketQuaTienCap =
+    "Mã khách hàng: " + maKH + " - Tiền cáp phải nộp là: " + tienCap + "$";
+  document.getElementById("inTienCap").innerHTML = ketQuaTienCap;
 };
