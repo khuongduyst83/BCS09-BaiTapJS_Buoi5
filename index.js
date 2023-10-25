@@ -142,8 +142,8 @@ document.getElementById("btnTinhTienCap").onclick = function () {
     tienCap = 15 + 75 + (soKetNoi - 10) * 5 + 50 * soKenh;
   }
   console.log(tienCap);
-  // In kết quả ra màn hình
+  //  kết quả ra màn hình
   ketQuaTienCap =
     "Mã khách hàng: " + maKH + " - Tiền cáp phải nộp là: " + tienCap + "$";
-  document.getElementById("inTienCap").innerHTML = ketQuaTienCap;
+  document.getElementById("TienCap").innerHTML = ketQuaTienCap;
 };
